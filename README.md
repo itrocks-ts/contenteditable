@@ -13,11 +13,11 @@ npm i @itrocks/contenteditable
 
 ```ts
 import ContentEditable from './node_modules/@itrocks/contenteditable.js'
-document.querySelectorAll('[contenteditable]').forEach(element => new ContentEditable(element))
+new ContentEditable(document.querySelector('#edit-me'))
 ```
 
 More examples are available in the `demo` folder of the
-[GitHub repository](https://github.com:itrocks/contenteditable).
+[GitHub repository](https://github.com/itrocks-ts/contenteditable).
 
 ## Behavior
 
@@ -65,7 +65,7 @@ Ensures the element ends with a technical trailing line break following the
 [line break matching white-space rule](#line-break-matching-white-space-rule).
 
 Adds the `data-trailing-br` attribute to indicate that a trailing line break character is part of
-the text content but not its value.\
+the text content but not its value.
 This attribute is removed if you remove `[contenteditable]` or call [deactivate()](#deactivate).
 
 Enables a [keydown event listener](https://developer.mozilla.org/docs/Web/API/Element/keydown_event)
