@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<script type="module">
+		import ContentEditable from '../contenteditable.js'
+
+		const element         = document.querySelector('[contenteditable]')
+		const button          = document.querySelector('button')
+		const contentEditable = new ContentEditable(element)
+
+		function edit()
+		{
+			contentEditable.activate()
+			button.innerText = 'Stop'
+			button.onclick   = stop
+			document.getElementsByTagName('div')[0].focus()
+		}
+
+		function stop()
+		{
+			contentEditable.deactivate()
+			button.innerText = 'Edit'
+			button.onclick   = edit
+		}
+
+		edit()
+	</script>
+
+	<title>contenteditable example</title>
+</head>
+<body>
+
+	<h2>Edit this:</h2>
+	<div contenteditable>Editable</div>
+
+	<button>Stop</button>
+
+</body>
+</html>
