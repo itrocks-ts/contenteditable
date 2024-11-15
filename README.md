@@ -1,3 +1,7 @@
+[![view on npm](https://badgen.net/npm/v/@itrocks/contenteditable)](https://www.npmjs.org/package/@itrocks/contenteditable)
+[![npm module downloads](https://badgen.net/npm/dt/@itrocks/contenteditable)](https://www.npmjs.org/package/@itrocks/contenteditable)
+[![GitHub repo dependents](https://badgen.net/github/dependents-repo/itrocks-ts/contenteditable)](https://github.com/itrocks-ts/contenteditable/network/dependents?dependent_type=REPOSITORY)
+[![GitHub package dependents](https://badgen.net/github/dependents-pkg/itrocks-ts/contenteditable)](https://github.com/itrocks-ts/contenteditable/network/dependents?dependent_type=PACKAGE)
 
 # contenteditable
 
@@ -24,6 +28,8 @@ More examples are available in the `demo` folder of the
 The feature manages the content of a `contenteditable` DOM element during typing
 to maintain clean and consistent text.
 
+The last line break is preserved as well.
+
 ### Line break matching white-space rule
 
 The line break characters inserted in your `contenteditable` element
@@ -31,9 +37,16 @@ depend on its `white-space` style attribute:
 - `pre`, `pre-line` or `pre-wrap`: inserts a `\n` character,
 - other `white-space` values result result in a `<br>` element.
 
+Any content ending with a line break will have an additional line break added to ensure proper display in your browser.
+
 ## API
 
-The following functions are publicly available in the `ContentEditable` class.
+The following properties and methods are publicly available in the `ContentEditable` class.
+
+### element
+
+The [element](#Parameters) associated with the `ContentEditable` instance,
+extended as an `HTMLEditableElement`. It includes a `editable` property that contains the `ContentEditable` instance.
 
 ### ContentEditable() constructor
 
@@ -43,11 +56,11 @@ new ContentEditable(element)
 
 Applies the `@itrocks/contenteditable` feature to an element.
 
-Calls [activate()](#activate) for initialization.
+Invokes [activate()](#activate) for initialisation.
 
-Starts a [mutation observer](http://developer.mozilla.org/docs/Web/API/MutationObserver):
-- automatically call [deactivate()](#deactivate) when the `contenteditable` attribute is removed,
-- automatically call [activate()](#activate) when the `contenteditable` attribute is re-added.
+Starts a [mutation observer](http://developer.mozilla.org/docs/Web/API/MutationObserver) to:
+- automatically invoke [deactivate()](#deactivate) when the `contenteditable` attribute is removed,
+- automatically invoke [activate()](#activate) when the `contenteditable` attribute is re-added.
 
 #### Parameters
 
@@ -61,13 +74,6 @@ activate()
 
 Sets the `contenteditable` attribute on your element if it's not already set,
 
-Ensures the element ends with a technical trailing line break following the
-[line break matching white-space rule](#line-break-matching-white-space-rule).
-
-Adds the `data-trailing-br` attribute to indicate that a trailing line break character is part of
-the text content but not its value.
-This attribute is removed if you remove `[contenteditable]` or call [deactivate()](#deactivate).
-
 Enables a [keydown event listener](https://developer.mozilla.org/docs/Web/API/Element/keydown_event)
 to keep line breaks in sync with a clean content structure following the
 [line break matching white-space rule](#line-break-matching-white-space-rule).
@@ -79,10 +85,6 @@ deactivate()
 ```
 
 Removes the `contenteditable` attribute from your element.
-
-If the edited text does not end with a line break:
-- removes the technical trailing line break,
-- removes the `data-trailing-br` attribute.
 
 Deactivates the now unnecessary
 [keydown event listener](https://developer.mozilla.org/docs/Web/API/Element/keydown_event).

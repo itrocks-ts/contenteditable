@@ -1,6 +1,13 @@
 
+class HTMLEditableElement extends HTMLElement
+{
+	editable?: ContentEditable;
+}
+
 export default class ContentEditable
 {
+
+	element: HTMLEditableElement;
 
 	isActive = false
 
@@ -11,14 +18,8 @@ export default class ContentEditable
 	activate()
 	{
 		const element = this.element
-
 		if (!element.hasAttribute('contenteditable')) {
 			element.setAttribute('contenteditable', '')
-		}
-
-		if (!element.hasAttribute('data-trailing-br')) {
-			element.appendChild(this.brNode())
-			element.setAttribute('data-trailing-br', '')
 		}
 
 		if (this.isActive) return
@@ -41,8 +42,10 @@ export default class ContentEditable
 			: document.createElement('br')
 	}
 
-	constructor(public element: HTMLElement)
+	constructor(element: HTMLElement)
 	{
+		this.element = element as HTMLEditableElement
+		this.element.editable = this
 		this.activate()
 
 		this.mutationObserver = new MutationObserver(mutations => mutations.forEach(mutation => {
@@ -57,35 +60,18 @@ export default class ContentEditable
 	deactivate()
 	{
 		const element = this.element
-
-		const br     = this.br()
-		let   text   = element.innerHTML
-		let   update = false
-
-		if ((br === '\n') && text.includes('<br>')) {
-			text   = text.replaceAll('<br>', '\n')
-			update = true
-		}
-
 		if (element.hasAttribute('contenteditable')) {
 			element.removeAttribute('contenteditable')
-		}
-		if (
-			element.hasAttribute('data-trailing-br')
-			&& text.endsWith(br)
-			&& !text.endsWith(br + br)
-		) {
-			element.removeAttribute('data-trailing-br')
-			text   = text.slice(0, -br.length)
-			update = true
-		}
-
-		if (update) {
-			element.innerHTML = text
 		}
 
 		if (!this.isActive) return
 		this.isActive = false
+
+		const br   = this.br()
+		const text = element.innerHTML
+		if (text.endsWith(br) && !text.endsWith(br + br)) {
+			element.innerHTML = text.slice(0, -br.length)
+		}
 
 		element.removeEventListener('keydown', this.keyDownEventListener)
 	}
@@ -109,6 +95,23 @@ export default class ContentEditable
 		range.collapse(true)
 		selection.removeAllRanges()
 		selection.addRange(range)
+
+		const br      = this.br()
+		const element = this.element
+		const text    = element.innerHTML
+		if (text.endsWith(br) && !text.endsWith(br + br)) {
+			element.appendChild(this.brNode())
+		}
+	}
+
+	value()
+	{
+		const br   = this.br()
+		let   text = this.element.innerHTML
+
+		return text.endsWith(br)
+			? text.slice(0, -br.length)
+			: text
 	}
 
 }

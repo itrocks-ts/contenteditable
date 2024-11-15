@@ -23,6 +23,7 @@
 			contentEditable.deactivate()
 			button.innerText = 'Edit'
 			button.onclick   = edit
+			console.log('value', '[' + contentEditable.value() + ']')
 		}
 
 		edit()
@@ -33,7 +34,7 @@
 <body>
 
 	<h2>Edit this:</h2>
-	<div contenteditable>Editable</div>
+	<div contenteditable style="white-space: pre-wrap;">Editable</div>
 
 	<button>Stop</button>
 
