@@ -1,9 +1,12 @@
 
-class HTMLEditableElement extends HTMLElement
+export class HTMLEditableElement extends HTMLElement
 {
-	editable?: ContentEditable;
+	constructor(public editable: ContentEditable) {
+		super()
+	}
 }
 
+export { ContentEditable }
 export default class ContentEditable
 {
 
@@ -102,6 +105,8 @@ export default class ContentEditable
 		if (text.endsWith(br) && !text.endsWith(br + br)) {
 			element.appendChild(this.brNode())
 		}
+
+		element.dispatchEvent(new Event('input'))
 	}
 
 	value()
