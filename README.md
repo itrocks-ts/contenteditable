@@ -37,7 +37,7 @@ depend on its `white-space` style attribute:
 - `pre`, `pre-line` or `pre-wrap`: inserts a `\n` character,
 - other `white-space` values result result in a `<br>` element.
 
-Any content ending with a line break will have an additional line break added to ensure proper display in your browser.
+Any content ending with a line break will have a trailing `<br>` added to ensure proper display in your browser.
 
 ## API
 
@@ -108,6 +108,8 @@ Removes the `contenteditable` attribute from your element.
 Deactivates the now unnecessary
 [keydown event listener](https://developer.mozilla.org/docs/Web/API/Element/keydown_event).
 
+If the value contains no line break, removes the trailing `<br>`.
+
 ### onKeyDown()
 
 ```ts
@@ -177,5 +179,5 @@ value()
 
 Returns the effective value of the edited content.
 This corresponds to the `innerHTML` of the content,
-excluding the trailing line break added to display the final empty line in the browser
+excluding the trailing `<br>` added to display the final empty line in the browser
 (see [Line break matching white-space rule](#line-break-matching-white-space-rule)).

@@ -70,10 +70,9 @@ export default class ContentEditable
 		if (!this.isActive) return
 		this.isActive = false
 
-		const br   = this.br()
 		const text = element.innerHTML
-		if (text.endsWith(br) && !text.endsWith(br + br)) {
-			element.innerHTML = text.slice(0, -br.length)
+		if (text.endsWith('<br>') && !text.endsWith(this.br() + '<br>')) {
+			element.innerHTML = text.slice(0, -4)
 		}
 
 		element.removeEventListener('keydown', this.keyDownEventListener)
@@ -102,8 +101,8 @@ export default class ContentEditable
 		const br      = this.br()
 		const element = this.element
 		const text    = element.innerHTML
-		if (text.endsWith(br) && !text.endsWith(br + br)) {
-			element.appendChild(this.brNode())
+		if (text.endsWith(br) && !text.endsWith(br + '<br>')) {
+			element.appendChild(document.createElement('br'))
 		}
 
 		element.dispatchEvent(new Event('input'))
@@ -111,11 +110,9 @@ export default class ContentEditable
 
 	value()
 	{
-		const br   = this.br()
-		let   text = this.element.innerHTML
-
-		return text.endsWith(br)
-			? text.slice(0, -br.length)
+		let text = this.element.innerHTML
+		return text.endsWith('<br>')
+			? text.slice(0, -4)
 			: text
 	}
 
