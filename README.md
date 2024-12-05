@@ -1,7 +1,8 @@
 [![view on npm](https://badgen.net/npm/v/@itrocks/contenteditable)](https://www.npmjs.org/package/@itrocks/contenteditable)
 [![npm module downloads](https://badgen.net/npm/dt/@itrocks/contenteditable)](https://www.npmjs.org/package/@itrocks/contenteditable)
-[![GitHub repo dependents](https://badgen.net/github/dependents-repo/itrocks-ts/contenteditable)](https://github.com/itrocks-ts/contenteditable/network/dependents?dependent_type=REPOSITORY)
-[![GitHub package dependents](https://badgen.net/github/dependents-pkg/itrocks-ts/contenteditable)](https://github.com/itrocks-ts/contenteditable/network/dependents?dependent_type=PACKAGE)
+[![GitHub repo dependents](https://badgen.net/github/dependents-repo/itrocks-ts/contenteditable?label=dependents)](https://github.com/itrocks-ts/contenteditable/network/dependents?dependent_type=REPOSITORY)
+[![Report issues on GitHub](https://badgen.net/github/open-issues/itrocks-ts/contenteditable?icon=github)](https://github.com/itrocks-ts/contenteditable/issues)
+[![Get support on Discord](https://badgen.net/discord/members/kbMjUq5F?icon=discord)](https://discord.gg/kbMjUq5F)
 
 # contenteditable
 
