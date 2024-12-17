@@ -28,7 +28,7 @@
     "text",
     "white-space"
   ],
-  "license": "MIT",
+  "license": "ISC",
   "module": "./contenteditable.js",
   "name": "@itrocks/contenteditable",
   "repository": "https://github.com/itrocks-ts/contenteditable",
@@ -37,5 +37,5 @@
   },
   "type": "module",
   "types": "./contenteditable.d.ts",
-  "version": "0.0.10"
+  "version": "0.0.11"
 }
