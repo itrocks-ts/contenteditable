@@ -1,8 +1,8 @@
-[![view on npm](https://badgen.net/npm/v/@itrocks/contenteditable)](https://www.npmjs.org/package/@itrocks/contenteditable)
-[![npm module downloads](https://badgen.net/npm/dt/@itrocks/contenteditable)](https://www.npmjs.org/package/@itrocks/contenteditable)
-[![GitHub repo dependents](https://badgen.net/github/dependents-repo/itrocks-ts/contenteditable?label=dependents)](https://github.com/itrocks-ts/contenteditable/network/dependents?dependent_type=REPOSITORY)
-[![Report issues on GitHub](https://badgen.net/github/open-issues/itrocks-ts/contenteditable?icon=github)](https://github.com/itrocks-ts/contenteditable/issues)
-[![Get support on Discord](https://badgen.net/discord/members/kbMjUq5F?icon=discord)](https://discord.gg/kbMjUq5F)
+[![npm version](https://img.shields.io/npm/v/@itrocks/contenteditable?logo=npm)](https://www.npmjs.org/package/@itrocks/contenteditable)
+[![npm downloads](https://img.shields.io/npm/dm/@itrocks/contenteditable)](https://www.npmjs.org/package/@itrocks/contenteditable)
+[![GitHub](https://img.shields.io/github/last-commit/itrocks-ts/contenteditable?color=2dba4e&label=commit&logo=github)](https://github.com/itrocks-ts/contenteditable)
+[![issues](https://img.shields.io/github/issues/itrocks-ts/contenteditable)](https://github.com/itrocks-ts/contenteditable/issues)
+[![discord](https://img.shields.io/discord/1314141024020467782?color=7289da&label=discord&logo=discord&logoColor=white)](https://discord.gg/WFPJjmUx)
 
 # contenteditable
 
