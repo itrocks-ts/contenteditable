@@ -33,11 +33,14 @@
 	"license": "ISC",
 	"module": "./contenteditable.js",
 	"name": "@itrocks/contenteditable",
-	"repository": "https://github.com/itrocks-ts/contenteditable",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/itrocks-ts/contenteditable.git"
+	},
 	"scripts": {
 		"build": "tsc"
 	},
 	"type": "module",
 	"types": "./contenteditable.d.ts",
-	"version": "0.0.15"
+	"version": "0.0.16"
 }
