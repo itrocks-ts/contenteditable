@@ -14,11 +14,13 @@
 		"*.d.ts",
 		"*.js"
 	],
+	"homepage": "https://it.rocks",
 	"keywords": [
 		"carriage return",
 		"contenteditable",
 		"fix",
 		"fixed",
+		"front-end",
 		"it.rocks",
 		"line feed",
 		"line break",
@@ -37,5 +39,5 @@
 	},
 	"type": "module",
 	"types": "./contenteditable.d.ts",
-	"version": "0.0.14"
+	"version": "0.0.15"
 }
