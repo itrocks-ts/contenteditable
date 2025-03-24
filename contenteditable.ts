@@ -6,8 +6,7 @@ export class HTMLEditableElement extends HTMLElement
 	}
 }
 
-export { ContentEditable }
-export default class ContentEditable
+export class ContentEditable
 {
 
 	element: HTMLEditableElement;
