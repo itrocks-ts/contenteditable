@@ -17,7 +17,7 @@ npm i @itrocks/contenteditable
 ## Usage
 
 ```ts
-import ContentEditable from './node_modules/@itrocks/contenteditable.js'
+import { ContentEditable } from './node_modules/@itrocks/contenteditable.js'
 new ContentEditable(document.querySelector('#edit-me'))
 ```
 
