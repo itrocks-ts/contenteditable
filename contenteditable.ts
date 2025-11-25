@@ -9,7 +9,7 @@ export class HTMLEditableElement extends HTMLElement
 export class ContentEditable
 {
 
-	element: HTMLEditableElement;
+	element: HTMLEditableElement
 
 	isActive = false
 
