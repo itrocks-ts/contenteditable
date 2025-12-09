@@ -5,8 +5,8 @@
 	},
 	"description": "Respectful contenteditable: avoids <div>, respects white-space: pre* styles line breaks",
 	"devDependencies": {
-		"@types/node": "^22.9",
-		"typescript": "~5.8"
+		"@types/node": "^24.10",
+		"typescript": "~5.9"
 	},
 	"files": [
 		"LICENSE",
@@ -42,5 +42,5 @@
 	},
 	"type": "module",
 	"types": "./contenteditable.d.ts",
-	"version": "0.0.20"
+	"version": "0.0.21"
 }
