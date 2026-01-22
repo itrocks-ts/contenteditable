@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 
 	<script type="module">
-		import ContentEditable from '../contenteditable.js'
+		import { ContentEditable } from '../contenteditable.js'
 
 		const element         = document.querySelector('[contenteditable]')
 		const button          = document.querySelector('button')
@@ -15,7 +15,7 @@
 			contentEditable.activate()
 			button.innerText = 'Stop'
 			button.onclick   = stop
-			document.getElementsByTagName('div')[0].focus()
+			element.focus()
 		}
 
 		function stop()

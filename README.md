@@ -11,23 +11,24 @@ Respectful `contenteditable`: avoids `<div>`, respects `white-space: pre*` style
 ## Installation
 
 ```bash
-npm i @itrocks/contenteditable
+npm install @itrocks/contenteditable
 ```
 
 ## Usage
 
 ```ts
-import { ContentEditable } from './node_modules/@itrocks/contenteditable.js'
-new ContentEditable(document.querySelector('#edit-me'))
+import { ContentEditable } from '@itrocks/contenteditable'
+
+document.querySelectorAll('[contenteditable]')
+  .forEach(element => new ContentEditable(element))
 ```
 
 More examples are available in the `demo` folder of the
 [GitHub repository](https://github.com/itrocks-ts/contenteditable).
 
-## Behavior
+## Behaviour
 
-The feature manages the content of a `contenteditable` DOM element during typing
-to maintain clean and consistent text.
+This feature manages a `contenteditable` element during typing to maintain clean and consistent text.
 
 The last line break is preserved as well.
 
@@ -36,18 +37,42 @@ The last line break is preserved as well.
 The line break characters inserted in your `contenteditable` element
 depend on its `white-space` style attribute:
 - `pre`, `pre-line` or `pre-wrap`: inserts a `\n` character,
-- other `white-space` values result result in a `<br>` element.
+- other `white-space` values result in a `<br>` element.
 
 Any content ending with a line break will have a trailing `<br>` added to ensure proper display in your browser.
 
-## API
+### Avoiding block elements in content
+
+This module deliberately avoids inserting block-level elements such as `<div>` inside the editable content.
+
+`contenteditable` elements tend to introduce `<div>` wrappers when handling line breaks,
+especially when pressing `Enter`.
+This leads to inconsistent DOM structures, harder text processing,
+and unexpected rendering differences across browsers.
+
+`@itrocks/contenteditable` enforces a simpler and predictable model:
+- Line breaks are represented only by newline characters (`\n`) when the computed `white-space` starts with `pre`,
+  `<br>` elements otherwise
+- No block-level elements are created inside the editable content
+- The resulting DOM remains flat and text-oriented
+
+This makes the editable content:
+- easier to parse and serialise
+- consistent across browsers
+- closer to plain text semantics while preserving visual line breaks
+
+## ContentEditable API
 
 The following properties and methods are publicly available in the `ContentEditable` class.
 
 ### element
 
-The [element](#Parameters) associated with the `ContentEditable` instance,
-extended as an `HTMLEditableElement`. It includes a `editable` property that contains the `ContentEditable` instance.
+```ts
+element: HTMLEditableElement
+```
+
+The [element](#parameters) associated with the `ContentEditable`,
+extended as an `HTMLEditableElement` with an `editable` property referencing the `ContentEditable` instance.
 
 ### ContentEditable() constructor
 
@@ -118,7 +143,7 @@ onKeyDown(event)
 ```
 
 Handles the [keydown](https://developer.mozilla.org/docs/Web/API/Element/keydown_event) event
-for the `contenteditable` element, ensuring the correct behavior when the `'Enter'` key is pressed.
+for the `contenteditable` element, ensuring the correct behaviour when the `'Enter'` key is pressed.
 By default, this method determines the appropriate action for the `'Enter'` key
 based on the library's implementation of line break management.
 
@@ -126,9 +151,9 @@ based on the library's implementation of line break management.
 
 This method is designed to be extensible
 using [Aspect-Oriented Programming (AOP)](https://en.wikipedia.org/wiki/Aspect-oriented_programming) principles.
-Developers can intercept and augment the behavior of `onKeyDown` to customize keyboard event handling
-while carefully managing execution priority relative to the library's default behavior.
-This extension can be performed **before**, **after**, or even **instead of** the default behavior.
+Developers can intercept and augment the behaviour of `onKeyDown` to customize keyboard event handling
+while carefully managing execution priority relative to the library's default behaviour.
+This extension can be performed **before**, **after**, or even **instead of** the default behaviour.
 
 #### Why extend `onKeyDown` instead of adding a `keydown` listener?
 
@@ -139,7 +164,7 @@ This extension can be performed **before**, **after**, or even **instead of** th
    **after**, or **instead of** the library's processing of the event.
 
 2. **Avoid unintended interference:**  
-   Preventing the library's default `'Enter'` key behavior by stopping event propagation
+   Preventing the library's default `'Enter'` key behaviour by stopping event propagation
    (`event.stopPropagation()` or `event.preventDefault()`)
    may inadvertently interfere with other components or listeners unrelated to this library.
    By extending `onKeyDown`, you ensure your changes are isolated and do not disrupt other listeners.
@@ -147,10 +172,10 @@ This extension can be performed **before**, **after**, or even **instead of** th
 #### Example: Preventing multiline input using AOP
 
 The following example demonstrates how to extend `onKeyDown` for a specific `ContentEditable` instance
-to prevent the default behavior of the `'Enter'` key when the element does not have a `data-multiline` attribute:
+to prevent the default behaviour of the `'Enter'` key when the element does not have a `data-multiline` attribute:
 
 ```ts
-const contentEditable = new ContentEditable(document.queryElement('#my-editable'))
+const contentEditable = new ContentEditable(document.querySelector('#my-editable'))
 const superOnKeyDown  = contentEditable.onKeyDown
 contentEditable.onKeyDown = function (event: KeyboardEvent): void {
 	if ((event.key === 'Enter') && !this.element?.hasAttribute('data-multiline')) {
@@ -163,13 +188,13 @@ contentEditable.onKeyDown = function (event: KeyboardEvent): void {
 
 #### Key Points
 
-- By overriding `onKeyDown`, you can implement custom behaviors tailored to your requirements.
+- By overriding `onKeyDown`, you can implement custom behaviours tailored to your requirements.
 - Ensure you call the original method (`superOnKeyDown`) when appropriate to preserve the default functionality,
   unless you intend to completely replace it.
 - This approach provides precise control over execution order without impacting unrelated components or listeners.
-- Using this pattern, multiple plugins can safely and independently modify the behavior of the same instance.
+- Using this pattern, multiple plugins can safely and independently modify the behaviour of the same instance.
 
-This makes it easier to apply different behaviors to individual `contentEditable` instances
+This makes it easier to apply different behaviours to individual `contentEditable` instances
 without relying on inheritance or risking conflicts with other plugins.
 
 ### value()
