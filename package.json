@@ -5,10 +5,10 @@
 	},
 	"description": "Respectful contenteditable: avoids <div>, respects white-space: pre* styles line breaks",
 	"devDependencies": {
-		"@types/node": "^24.10",
-		"typescript": "~5.9"
+		"typescript": "^6.0"
 	},
 	"files": [
+		"demo.html",
 		"LICENSE",
 		"README.md",
 		"*.d.ts",
@@ -31,7 +31,6 @@
 		"white-space"
 	],
 	"license": "ISC",
-	"module": "./contenteditable.js",
 	"name": "@itrocks/contenteditable",
 	"repository": {
 		"type": "git",
@@ -40,7 +39,5 @@
 	"scripts": {
 		"build": "tsc"
 	},
-	"type": "module",
-	"types": "./contenteditable.d.ts",
-	"version": "0.1.0"
+	"version": "0.1.1"
 }
