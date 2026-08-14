@@ -5,7 +5,7 @@
 	},
 	"description": "Respectful contenteditable: avoids <div>, respects white-space: pre* styles line breaks",
 	"devDependencies": {
-		"typescript": "^6.0"
+		"typescript": "^7.0"
 	},
 	"files": [
 		"demo.html",
@@ -39,5 +39,5 @@
 	"scripts": {
 		"build": "tsc"
 	},
-	"version": "0.1.1"
+	"version": "0.1.2"
 }
